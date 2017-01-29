@@ -15,6 +15,11 @@ public class MainActivity extends Activity {
 
     public TextView loser;
 
+    public TextView player1;
+    public TextView player2;
+    public TextView player3;
+    public TextView player4;
+
     public TextView p1Points;
     public Button p1MinusOne;
     public Button p1PlusOne;
@@ -46,6 +51,11 @@ public class MainActivity extends Activity {
 
         loser = (TextView) findViewById(R.id.loserView);
 
+        player1 = (TextView) findViewById(R.id.textView);
+        player2 = (TextView) findViewById(R.id.textView2);
+        player3 = (TextView) findViewById(R.id.textView3);
+        player4 = (TextView) findViewById(R.id.textView4);
+
         p1MinusOne = (Button) findViewById(R.id.button);
         p1PlusOne = (Button) findViewById(R.id.button2);
         p1MinusFive = (Button) findViewById(R.id.button3);
@@ -70,35 +80,37 @@ public class MainActivity extends Activity {
         p4PlusFive = (Button) findViewById(R.id.button4P4);
         p4Points = (TextView) findViewById(R.id.textViewPointsP4);
 
-        p1MinusOne.setOnClickListener(new MyListener(-1, p1Points));
-        p1PlusOne.setOnClickListener(new MyListener(1, p1Points));
-        p1MinusFive.setOnClickListener(new MyListener(-5, p1Points));
-        p1PlusFive.setOnClickListener(new MyListener(5, p1Points));
+        p1MinusOne.setOnClickListener(new MyListener(-1, p1Points, player1));
+        p1PlusOne.setOnClickListener(new MyListener(1, p1Points, player1));
+        p1MinusFive.setOnClickListener(new MyListener(-5, p1Points, player1));
+        p1PlusFive.setOnClickListener(new MyListener(5, p1Points, player1));
 
-        p2MinusOne.setOnClickListener(new MyListener(-1, p2Points));
-        p2PlusOne.setOnClickListener(new MyListener(1, p2Points));
-        p2MinusFive.setOnClickListener(new MyListener(-5, p2Points));
-        p2PlusFive.setOnClickListener(new MyListener(5, p2Points));
+        p2MinusOne.setOnClickListener(new MyListener(-1, p2Points, player2));
+        p2PlusOne.setOnClickListener(new MyListener(1, p2Points, player2));
+        p2MinusFive.setOnClickListener(new MyListener(-5, p2Points, player2));
+        p2PlusFive.setOnClickListener(new MyListener(5, p2Points, player2));
 
-        p3MinusOne.setOnClickListener(new MyListener(-1, p3Points));
-        p3PlusOne.setOnClickListener(new MyListener(1, p3Points));
-        p3MinusFive.setOnClickListener(new MyListener(-5, p3Points));
-        p3PlusFive.setOnClickListener(new MyListener(5, p3Points));
+        p3MinusOne.setOnClickListener(new MyListener(-1, p3Points, player3));
+        p3PlusOne.setOnClickListener(new MyListener(1, p3Points, player3));
+        p3MinusFive.setOnClickListener(new MyListener(-5, p3Points, player3));
+        p3PlusFive.setOnClickListener(new MyListener(5, p3Points, player3));
 
-        p4MinusOne.setOnClickListener(new MyListener(-1, p4Points));
-        p4PlusOne.setOnClickListener(new MyListener(1, p4Points));
-        p4MinusFive.setOnClickListener(new MyListener(-5, p4Points));
-        p4PlusFive.setOnClickListener(new MyListener(5, p4Points));
+        p4MinusOne.setOnClickListener(new MyListener(-1, p4Points, player4));
+        p4PlusOne.setOnClickListener(new MyListener(1, p4Points, player4));
+        p4MinusFive.setOnClickListener(new MyListener(-5, p4Points, player4));
+        p4PlusFive.setOnClickListener(new MyListener(5, p4Points, player4));
 
     }
 
     private class MyListener implements View.OnClickListener {
         public int value;
         public TextView view;
+        public TextView player;
 
-        public MyListener(int value, TextView view) {
+        public MyListener(int value, TextView view, TextView player) {
             this.value = value;
             this.view = view;
+            this.player = player;
         }
 
         @Override
@@ -106,7 +118,7 @@ public class MainActivity extends Activity {
             int num = Integer.parseInt(this.view.getText().toString());
             this.view.setText(num + value + "");
             if(num + value <= 0) {
-               loser.setText("Player 1 Loses");
+               loser.setText(this.player.getText() + " Loses");
             }
         }
     }
